@@ -110,18 +110,18 @@ public class Solver{
             }
 
             //Automatically multiplies functions eg 3sin(30) = 3/2
-            if(ch >= 'a' && ch <= 'z') {
+            if(ch >= 'a' && ch <= 'z' || ch == '(') {
                 back();
                 answer = Double.parseDouble(toSolve.substring(startPos, curPos + 1));
                 complexAnswer = new Complex(answer);
                 advance();
+                if(ch =='(') advance();
                 complexAnswer = Complex.mult(complexAnswer, addTogether());
                 return complexAnswer;
             }
             else if(ch != 0){
                 back();
             }
-
 
             answer = Double.parseDouble(toSolve.substring(startPos, curPos + 1));
             complexAnswer = new Complex(answer);
@@ -191,7 +191,7 @@ public class Solver{
         advance();
         if (lookFor('^')) {
             advance();
-            complexAnswer = Complex.pow(complexAnswer, functionCompute());
+            complexAnswer = Complex.pow(complexAnswer, addTogether());
         }
         else back();
 
