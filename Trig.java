@@ -69,5 +69,29 @@ public class Trig {
 	public double doubletan() {
 		return ( 2 * Math.tan(radians) / (1 - Math.pow(Math.tan(radians), 2)) );
 	}
+	
+	public String toString() {
+		String output = "sin(" + degrees + " degrees) =" + sin() + "\n";
+		output += "cos(" + degrees + " degrees) =" + cos() + "\n";
+		output += "tan(" + degrees + " degrees) =" + tan() + "\n";
+		output += "sec(" + degrees + " degrees) =" + sec() + "\n";
+		output += "csc(" + degrees + " degrees) =" + csc() + "\n";
+		output += "cot(" + degrees + " degrees) =" + cot() + "\n";
+		output += "asin(" + degrees + " degrees) =" + asin() + "\n";
+		output += "acos(" + degrees + " degrees) =" + acos() + "\n";
+		output += "atan(" + degrees + " degrees) =" + atan() + "\n";
+		output += "sin(" + (degrees / 2) + " degrees) =" + halfsin() + "\n";
+		output += "cos(" + (degrees / 2) + " degrees) =" + halfcos() + "\n";
+		output += "tan(" + (degrees / 2) + " degrees) =" + halftan() + "\n";
+		output += "sin(" + (degrees * 2) + " degrees) =" + doublesin() + "\n";
+		output += "cos(" + (degrees * 2) + " degrees) =" + doublecos() + "\n";
+		output += "tan(" + (degrees * 2) +" degrees) =" + doubletan();
+		return output;
+	}
+	
+	public static void main(String[] args) {
+		Trig x = new Trig(30);
+		System.out.println(x.toString());
+	}
 
 }
