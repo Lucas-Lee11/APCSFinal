@@ -28,6 +28,7 @@ public class Complex {
 	}
 
 	public boolean equals(Object that){
+		if(!(that instanceof Complex)) return false;
 		Complex comp = Complex.sub(this, (Complex) that);
 		comp = abs(comp);
 
@@ -45,6 +46,10 @@ public class Complex {
 		((double) Math.round(real *100000))/100000 +  " + " + ((double) Math.round(imaginary *100000))/100000 + "i";
 		return output;
 	}
+
+	// public String toString(){
+	// 	return (real + " + " + imaginary + "i");
+	// }
 
     //Basic arithmatic
 	public static Complex add(Complex var1, Complex var2) {
@@ -71,6 +76,8 @@ public class Complex {
      }
 
     public static Complex pow(Complex var, Complex pow) {
+		 if(var.equals(new Complex(0))) return new Complex(0);
+
          Complex a = mult(new Complex(Math.log(var.mod())), pow);
          Complex temp = mult(new Complex(var.arg()), pow);
          Complex b = mult(new Complex(0, 1), temp);

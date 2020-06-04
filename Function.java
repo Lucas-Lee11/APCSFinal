@@ -79,7 +79,7 @@ public class Function{
         );
         Complex ga = Complex.add(ga1, ga2);
 
-        if(be.equals(new Complex(0,0))){
+        if(be.equals(new Complex(0))){
             Complex[] roots = new Complex[4];
             for(int i = 0; i <= 3; i ++){
                 int s = (int) Math.pow(-1, i);
@@ -184,20 +184,18 @@ public class Function{
         return roots;
     }
 
-    
+
 
     public static void main(String[] args) {
         Function f = new Function(new Complex[]{
-            new Complex(2,3),
-            new Complex(-3,4),
-            new Complex(34,0),
-            new Complex(-3,-10),
-            new Complex(0,-5)
+            new Complex(1),
+            new Complex(0),
+            new Complex(0),
+            new Complex(0),
+            new Complex(-81)
         });
 
         Complex[] rts = f.getRoots();
         for(Complex rt: rts) System.out.println(rt);
-
-        System.out.println(new Complex(12,0.001).equals(new Complex(12)));
     }
 }
