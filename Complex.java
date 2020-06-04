@@ -27,6 +27,14 @@ public class Complex {
 		return output;
 	}
 
+	public boolean equals(Object that){
+		Complex comp = Complex.sub(this, (Complex) that);
+		comp = abs(comp);
+
+		if(comp.real < 0.001 && comp.imaginary < 0.001) return true;
+		else return false;
+	}
+
 	//Returs a number's complex consjugate
     public Complex conjugate(){
         return new Complex(real, -imaginary);
@@ -97,6 +105,14 @@ public class Complex {
         Complex output = div(sin(var), cos(var));
         return output;
     }
+
+	public static Complex abs(Complex var){
+		double r = var.real; double i = var.imaginary;
+		if (r < 0) r = -r;
+		if (i < 0) i = -i;
+		Complex output = new Complex(r, i);
+		return output;
+	}
 
     //Converts from a given modulus and argument to a+bi form
     public static Complex polarToCoor(double mod, double arg){
