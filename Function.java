@@ -10,6 +10,20 @@ public class Function{
     }
 
     public Complex[] getRoots(){
+        Complex z = new Complex(0);
+
+        if(terms[0].equals(z)){
+            if(terms[1].equals(z)){
+                if(terms[2].equals(z)){
+                    if(terms[3].equals(z)){
+                        throw new IllegalArgumentException();
+                    }else return linearRoots();
+                }else return quadraticRoots();
+            } else return cubicRoots();
+        } else return quarticRoots();
+    }
+
+    private Complex[] quarticRoots(){
         Complex A = terms[0]; Complex B = terms[1]; Complex C = terms[2]; Complex D = terms[3]; Complex E = terms[4];
 
         Complex al = Complex.sub(
@@ -184,15 +198,109 @@ public class Function{
         return roots;
     }
 
+    private Complex[] cubicRoots(){
+        Complex A = terms[1]; Complex B = terms[2]; Complex C = terms[3]; Complex D = terms[4];
 
+        Complex del0 = Complex.sub(
+            Complex.pow(B, new Complex(2)),
+            Complex.mult(Complex.mult(A,C), new Complex(3))
+        );
+        Complex del1 = Complex.add(
+            Complex.mult(
+                new Complex(2),
+                Complex.pow(B, new Complex(3))
+            ),
+            Complex.mult(
+                new Complex(27),
+                Complex.mult(D, Complex.pow(A, new Complex(2)))
+            )
+        );
+        del1 = Complex.sub(
+            del1,
+            Complex.mult(
+                new Complex(9),
+                Complex.mult(A, Complex.mult(B, C))
+            )
+        );
+
+        Complex ca = Complex.sqrt(
+            Complex.sub(
+                Complex.pow(del1, new Complex(2)),
+                Complex.mult(new Complex(4), Complex.pow(del0, new Complex(3)))
+            )
+        );
+        if(ca.equals(del1)) ca = Complex.add(ca, del1);
+        else ca = Complex.sub(del1, ca);
+        ca = Complex.pow(Complex.div(ca, new Complex(2)), new Complex(1.0/3.0));
+
+        Complex z = Complex.div(
+            Complex.sub(Complex.sqrt(new Complex(-3)), new Complex(1)),
+            new Complex(2)
+        );
+        Complex[] roots = new Complex[3];
+        for(int i = 0; i <= 2; i++){
+            Complex zeta = Complex.pow(z, new Complex (i));
+            ca = Complex.mult(ca, zeta);
+
+            Complex x = Complex.add(
+                Complex.div(del0, ca),
+                Complex.add(ca, B)
+            );
+            x = Complex.mult(
+                x,
+                Complex.div(
+                    new Complex(-1),
+                    Complex.mult(new Complex(3), A)
+                )
+            );
+            roots[i] = x;
+        }
+
+        return roots;
+
+    }
+
+    private Complex[] quadraticRoots(){
+        Complex A = terms[2]; Complex B = terms[3]; Complex C = terms[4];
+
+        Complex dis = Complex.sqrt(
+            Complex.sub(
+                Complex.pow(B, new Complex(2)),
+                Complex.mult(new Complex(4), Complex.mult(A,C))
+            )
+        );
+
+        Complex[] roots = new Complex[2];
+        B = Complex.mult(new Complex(-1), B);
+
+        for(int i = 0; i <= 1; i++){
+            Complex x = new Complex(0);
+            if (i == 0) x = Complex.add(B, dis);
+            else x = Complex.sub(B, dis);
+
+            x = Complex.div(x, Complex.mult(new Complex(2), A));
+            roots[i] = x;
+        }
+        return roots;
+
+    }
+
+    private Complex[] linearRoots(){
+        return new Complex[]{
+            Complex.div(
+                Complex.mult(terms[4], new Complex(-1)),
+                terms[3]
+            )
+        };
+    }
 
     public static void main(String[] args) {
         Function f = new Function(new Complex[]{
-            new Complex(1),
-            new Complex(0),
-            new Complex(0),
-            new Complex(0),
-            new Complex(-81)
+            new Complex(3.2,-3),
+            new Complex(0,-0.4),
+            new Complex(3),
+            new Complex(-7,5),
+            new Complex(2)
         });
 
         Complex[] rts = f.getRoots();
