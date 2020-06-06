@@ -176,6 +176,7 @@ public class Solver{
                 else if (func.equals("sin")) complexAnswer = Complex.sin(complexAnswer);
                 else if (func.equals("cos")) complexAnswer = Complex.cos(complexAnswer);
                 else if (func.equals("tan")) complexAnswer = Complex.tan(complexAnswer);
+                else if (func.equals("ln")) complexAnswer = Complex.ln(complexAnswer);
                 else if (func.equals("torad")) complexAnswer = Complex.mult(complexAnswer, new Complex(Math.PI /180));
                 else throw new RuntimeException("Unknown function: " + func + "()");
             }
@@ -192,6 +193,10 @@ public class Solver{
         if (lookFor('^')) {
             advance();
             complexAnswer = Complex.pow(complexAnswer, addTogether());
+        }
+        else if(lookFor('&')){
+            advance();
+            complexAnswer = Complex.logBase(complexAnswer, addTogether());
         }
         else back();
 

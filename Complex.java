@@ -98,6 +98,23 @@ public class Complex {
         return output;
     }
 
+	public static Complex ln(Complex var){
+		double r = var.mod();
+		double theta = var.arg();
+
+		Complex output = add(
+			new Complex(Math.log(r)),
+			mult(new Complex(0,1), new Complex(theta))
+		);
+
+		return output;
+	}
+
+	public static Complex logBase(Complex base, Complex var){
+		Complex output = div(ln(var),ln(base));
+		return output;
+	}
+
     public static Complex sin(Complex var){
         Complex output = new Complex(Math.sin(var.real) * Math.cosh(var.imaginary), Math.cos(var.real) * Math.sinh(var.imaginary));
         return output;
