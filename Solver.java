@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Solver{
     private String toSolve;
@@ -7,6 +7,7 @@ public class Solver{
     private int ch;
 
     public Solver(String equation){
+        if(equation == null || equation.equals("")) throw new IllegalArgumentException();
         toSolve = equation;
         curPos = 0;
         ch = toSolve.charAt(curPos);
@@ -161,7 +162,7 @@ public class Solver{
 
                 }
                 if(ch == 0){
-                    throw new RuntimeException ("No input for function: " + func + "()");
+                    throw new IllegalArgumentException ("No input for function: " + func + "()");
 
                 }
                 else {
@@ -178,14 +179,14 @@ public class Solver{
                 else if (func.equals("tan")) complexAnswer = Complex.tan(complexAnswer);
                 else if (func.equals("ln")) complexAnswer = Complex.ln(complexAnswer);
                 else if (func.equals("torad")) complexAnswer = Complex.mult(complexAnswer, new Complex(Math.PI /180));
-                else throw new RuntimeException("Unknown function: " + func + "()");
+                else throw new IllegalArgumentException("Unknown function: " + func + "()");
             }
 
 
         }
         else {
             complexAnswer = new Complex(0);
-            throw new RuntimeException("Unexpected character: " + toSolve.charAt(curPos));
+            throw new IllegalArgumentException("Unexpected character: " + toSolve.charAt(curPos));
         }
 
         //For exponents

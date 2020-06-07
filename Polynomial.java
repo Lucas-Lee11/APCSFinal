@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class Function{
+public class Polynomial{
 
     private Complex[] terms;
 
-    public Function(Complex[] terms){
+    public Polynomial(Complex[] terms){
         if(terms.length != 5) throw new IllegalArgumentException();
         this.terms = terms;
     }
@@ -294,8 +294,17 @@ public class Function{
         };
     }
 
+    public static Polynomial sub(Polynomial f, Polynomial g){
+        Polynomial out = new Polynomial(new Complex[5]);
+        for(int i = 0; i < 5; i++)
+            out.terms[i] = Complex.sub(f.terms[i], g.terms[i]);
+
+        return out;
+
+    }
+
     public static void main(String[] args) {
-        Function f = new Function(new Complex[]{
+        Polynomial f = new Polynomial(new Complex[]{
             new Complex(3.2,-3),
             new Complex(0,-0.4),
             new Complex(3),
