@@ -85,12 +85,8 @@ public class Equation extends JFrame implements ActionListener{
             Polynomial f = new Polynomial(first);
             Polynomial g = new Polynomial(second);
             Polynomial s = Polynomial.sub(f, g);
-            System.out.println(" " + f + " \n" + g + "\n" + s);
-            for(Complex rt : s.getRoots()) {
+            for(Complex rt : s.getRoots())
                 output += (rt.toString() + ", ");
-                System.out.println(rt);
-            }
-            System.out.println(output);
             out.setText(output);
 
         }

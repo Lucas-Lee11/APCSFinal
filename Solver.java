@@ -116,8 +116,11 @@ public class Solver{
                 answer = Double.parseDouble(toSolve.substring(startPos, curPos + 1));
                 complexAnswer = new Complex(answer);
                 advance();
-                if(ch =='(') advance();
-                complexAnswer = Complex.mult(complexAnswer, addTogether());
+                if(ch =='('){
+                    advance();
+                    complexAnswer = Complex.mult(complexAnswer, addTogether());
+                }
+                else complexAnswer = Complex.mult(complexAnswer, functionCompute());
                 return complexAnswer;
             }
             else if(ch != 0){
@@ -193,11 +196,11 @@ public class Solver{
         advance();
         if (lookFor('^')) {
             advance();
-            complexAnswer = Complex.pow(complexAnswer, addTogether());
+            complexAnswer = Complex.pow(complexAnswer, functionCompute());
         }
         else if(lookFor('&')){
             advance();
-            complexAnswer = Complex.logBase(complexAnswer, addTogether());
+            complexAnswer = Complex.logBase(complexAnswer, functionCompute());
         }
         else back();
 

@@ -57,7 +57,7 @@ public class Calculator implements WindowListener{
         f.setSize(400,400);
         f.setLayout(null);
         f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
     }
