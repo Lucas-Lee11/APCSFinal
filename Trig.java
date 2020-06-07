@@ -100,8 +100,12 @@ public class Trig {
 		return output;
 	}
 	
-	public double getAngle() {
-	    return radians;
+	public double getDegrees() {
+		return degrees;
+	}
+	
+	public double getRadians() {
+		return radians;	
 	}
 	
 	public String toString() {
