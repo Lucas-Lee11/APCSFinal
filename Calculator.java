@@ -34,12 +34,12 @@ public class Calculator implements WindowListener{
                 eval.addWindowListener(w);
             }
         });
-        options.add(new JButton("Other option"));
+        options.add(new JButton("Polynomial Equations"));
         options.get(1).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 f.setVisible(false);
-                JFrame eval = new Evaluator();
-                eval.addWindowListener(w);
+                JFrame eq = new Equation();
+                eq.addWindowListener(w);
             }
         });
 

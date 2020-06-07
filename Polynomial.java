@@ -294,6 +294,15 @@ public class Polynomial{
         };
     }
 
+    public String toString(){
+        String out = "";
+        for(int i = 0 ; i < 5; i ++){
+            out += ("(" + terms[i] +  ")x^" + (4-i)) + " + ";
+        }
+
+        return out;
+    }
+
     public static Polynomial sub(Polynomial f, Polynomial g){
         Polynomial out = new Polynomial(new Complex[5]);
         for(int i = 0; i < 5; i++)
@@ -313,6 +322,7 @@ public class Polynomial{
         });
 
         Complex[] rts = f.getRoots();
+        System.out.println(f);
         for(Complex rt: rts) System.out.println(rt);
     }
 }
