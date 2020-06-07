@@ -100,6 +100,10 @@ public class Trig {
 		return output;
 	}
 	
+	public double getAngle() {
+	    return radians;
+	}
+	
 	public String toString() {
 		String output = "sin(" + degrees + " degrees) =" + sin() + "\n";
 		output += "cos(" + degrees + " degrees) =" + cos() + "\n";
