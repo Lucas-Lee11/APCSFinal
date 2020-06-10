@@ -46,9 +46,13 @@ public class Complex {
 		double i = (double) Math.round(imaginary *100000)/100000;
 
 		String output = "";
-		if(r != 0.0) output += (r);
-		if(i > 0.0) output += ("+" + i +"i");
-		else if(i < 0.0) output += (i + "i");
+		if(r != 0.0) {
+			output += (r);
+			if(i > 0.0) output += ("+" + i +"i");
+			else if(i < 0.0) output += (i + "i");
+		}
+		else output += (i + "i");
+
 		return output;
 	}
 

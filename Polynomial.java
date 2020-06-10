@@ -299,6 +299,7 @@ public class Polynomial{
         for(int i = 0 ; i < 5; i ++){
             out += ("(" + terms[i] +  ")x^" + (4-i)) + " + ";
         }
+        out = out.substring(0,out.length()-6);
 
         return out;
     }
