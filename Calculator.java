@@ -58,7 +58,7 @@ public class Calculator implements WindowListener{
 
         for(JButton option : options){
             f.add(option);
-            option.setBounds(5, track, 100, 30);
+            option.setBounds(5, track, 200, 30);
             track += 30;
         }
 

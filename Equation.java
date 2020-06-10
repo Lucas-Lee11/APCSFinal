@@ -6,21 +6,23 @@ import java.util.*;
 public class Equation extends JFrame implements ActionListener{
 
     private JButton solve, back;
-    private JLabel intro, out, ans, LHS, RHS;
+    private JLabel intro, out, ans, LHS, RHS, eqn, zero;
     private HashMap<JLabel, JTextField> side1, side2;
     private Solver s;
 
     public Equation(){
-        super("Roots Finder");
+        super("Intersection Finder");
         JFrame f = this;
 
-        solve = new JButton("Find Roots");
+        solve = new JButton("Solution");
         back = new JButton("Back");
         intro = new JLabel("Enter terms for each side");
         LHS = new JLabel("Left side");
         RHS = new JLabel("Right side");
-        ans = new JLabel("Answer:");
+        ans = new JLabel("Intersection:");
         out = new JLabel("");
+        eqn = new JLabel("");
+        zero = new JLabel("");
         side1 = new LinkedHashMap<JLabel, JTextField>();
         side2 = new LinkedHashMap<JLabel, JTextField>();
         for(int i = 4; i >= 0; i--){
@@ -33,6 +35,8 @@ public class Equation extends JFrame implements ActionListener{
         intro.setBounds(10, 25, 500, 30);
         LHS.setBounds(10, 95, 100, 30);
         RHS.setBounds(300, 95, 100, 30);
+        eqn.setBounds(10, 400, 1000, 30);
+        zero.setBounds(10, 420, 1000, 30);
         ans.setBounds(10, 500, 100, 30);
         out.setBounds(10, 520, 1000, 30);
 
@@ -56,7 +60,7 @@ public class Equation extends JFrame implements ActionListener{
             }
         });
 
-        add(solve); add(back); add(intro); add(LHS); add(RHS); add(ans); add(out);
+        add(solve); add(back); add(intro); add(LHS); add(RHS); add(ans); add(out); add(zero); add(eqn);
         for (Map.Entry<JLabel,JTextField> row : side1.entrySet()) {add(row.getKey()); add(row.getValue());}
         for (Map.Entry<JLabel,JTextField> row : side2.entrySet()) {add(row.getKey()); add(row.getValue());}
 
@@ -87,7 +91,9 @@ public class Equation extends JFrame implements ActionListener{
             Polynomial s = Polynomial.sub(f, g);
             for(Complex rt : s.getRoots())
                 output += (rt.toString() + ", ");
-            out.setText(output);
+            out.setText("{" + output.substring(0, output.length()-2) + "}");
+            eqn.setText(f + " = " + g);
+            zero.setText(s + " = 0");
 
         }
         catch(IllegalArgumentException a){

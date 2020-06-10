@@ -297,9 +297,11 @@ public class Polynomial{
     public String toString(){
         String out = "";
         for(int i = 0 ; i < 5; i ++){
-            out += ("(" + terms[i] +  ")x^" + (4-i)) + " + ";
+            if(!terms[i].equals(new Complex(0))) {
+                out += ("(" + terms[i] +  ")");
+                if(i != 4) out+= ("x^" + (4-i) + " + ");
+            }
         }
-        out = out.substring(0,out.length()-6);
 
         return out;
     }
