@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class Trig {
+public class Angle {
 	private double degrees;
 	private double radians;
 
 	// assumes theta is in degrees
-	public Trig (double theta) {
+	public Angle (double theta) {
 		degrees = theta;
 		radians = Math.toRadians(theta);
 	}
@@ -99,15 +99,15 @@ public class Trig {
 		output += "tan(" + (2 * degrees) + " degrees) = " + ( 2 * Math.tan(radians) / (1 - Math.pow(Math.tan(radians), 2)) );
 		return output;
 	}
-	
+
 	public double getDegrees() {
 		return degrees;
 	}
-	
+
 	public double getRadians() {
-		return radians;	
+		return radians;
 	}
-	
+
 	public String toString() {
 		String output = "sin(" + degrees + " degrees) =" + sin() + "\n";
 		output += "cos(" + degrees + " degrees) =" + cos() + "\n";
@@ -132,9 +132,9 @@ public class Trig {
 		output += doubletan();
 		return output;
 	}
-	
+
 	public static void main(String[] args) {
-		Trig x = new Trig(30);
+		Angle x = new Angle(30);
 		System.out.println(x.toString());
 	}
 
