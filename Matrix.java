@@ -108,7 +108,7 @@ public class Matrix
 	public static Matrix Identity(int row)
 	{
 		Complex[][] m = new Complex[row][row];
-		
+
 		for (int i = 0; i < row; i++)
 			for (int j = 0; j < row; j++)
 				m[i][j] = new Complex(1, 0);
@@ -135,8 +135,8 @@ public class Matrix
 				{
 					entry = Complex.add(a.getElement(i, j), b.getElement(i, j));
 					c.assignElement(i, j, entry);
-				}	
-			
+				}
+
 			return c;
 		}
 		else
@@ -161,7 +161,7 @@ public class Matrix
 		if (cola == rowb)
 		{
 			Matrix c = new Matrix(rowa, colb);
-			
+
 			for (int i = 1; i <= rowa; i++)
 				for (int j = 1; j <= colb; j++)
 				{
@@ -213,7 +213,7 @@ public class Matrix
 		for (int i = 1; i <= colnum; i++)
 			for (int j = 1; j <= rownum; j++)
 				b.assignElement(i, j, getElement(j, i));
-	
+
 		return b;
 	}
 
@@ -228,7 +228,7 @@ public class Matrix
 
 		if (rownum == 1)
 			return getElement(1, 1);
-		
+
 		if (rownum == 2)
 		{
 			Complex prod1 = Complex.mult(getElement(1, 1), getElement(2, 2));
@@ -263,7 +263,7 @@ public class Matrix
 			{
 				c = k;
 				d = l;
-				
+
 				if (k >= i)
 					c++;
 				if (l >= j)
@@ -350,27 +350,27 @@ public class Matrix
 			for (int i = 1; i <= n; i++)
 				a.assignElement(i, j, A.getElement(i, j));
 		}
-		
+
 		return solution;
 	}
-				
-	public static boolean isEqual(Matrix a, Matrix b)
+
+	public boolean equals(Object that)
 	{
-		boolean result = true;
-		if (a.getnumRow() == b.getnumRow() && a.getnumCol() == b.getnumCol())
-			for (int i = 1; i <= a.getnumRow(); i++)
-				for (int j = 1; j <= a.getnumCol(); j++)
-					if (!(a.getElement(i, j).equals(b.getElement(i, j))))
+		if(that == null || !(that instanceof Matrix)) return false;
+		Matrix b = (Matrix) that;
+		if (getnumRow() == b.getnumRow() && getnumCol() == b.getnumCol())
+			for (int i = 1; i <= getnumRow(); i++)
+				for (int j = 1; j <= getnumCol(); j++)
+					if (!(getElement(i, j).equals(b.getElement(i, j))))
 						return false;
-		else
-			return false;
-		return false;
+		else return false;
+		return true;
 	}
 
 	public String toString()
 	{
 		String result = new String("");
-		
+
 		for (int i = 0; i < rownum; i++)
 		{
 			result += "[";
@@ -379,22 +379,10 @@ public class Matrix
 				result += matrix[i][j];
 				result += " ";
 			}
-			
+
 			result += "]\n";
 		}
 
 		return result;
 	}
 }
-
-		
-			
-
-
-
-	
-
-			
-
-
-
