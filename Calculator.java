@@ -42,6 +42,14 @@ public class Calculator implements WindowListener{
                 eq.addWindowListener(w);
             }
         });
+        options.add(new JButton("Graphing"));
+        options.get(2).addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                f.setVisible(false);
+                JFrame gr = new Main();
+                gr.addWindowListener(w);
+            }
+        });
 
         des = new JLabel("Calculator Options");
         des.setBounds(10, -5, 500, 50);

@@ -9,9 +9,7 @@ public class Main extends JFrame {
     Graphing x = new Graphing();
     add(x);
     pack();
+    setVisible(true);
   }
 
-  public static void main(String[] a) {
-    new Main().setVisible(true);
-  }
 }

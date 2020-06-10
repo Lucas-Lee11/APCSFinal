@@ -42,8 +42,13 @@ public class Complex {
     }
 
 	public String toString() {
-		String output =
-		((double) Math.round(real *100000))/100000 +  " + " + ((double) Math.round(imaginary *100000))/100000 + "i";
+		double r = (double) Math.round(real *100000)/100000;
+		double i = (double) Math.round(imaginary *100000)/100000;
+
+		String output = "";
+		if(r != 0.0) output += (r);
+		if(i > 0.0) output += ("+" + i +"i");
+		else if(i < 0.0) output += (i + "i");
 		return output;
 	}
 
