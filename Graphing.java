@@ -35,6 +35,20 @@ public class Graphing extends JPanel {
     return output;
   }
 
+  public double scaleBh (double B) {
+    double output = 0.0;
+    while (B > 0){
+        if (B == 1)
+            output += (0.25 * 25);
+        else if (B % 2 == 0)
+            output += (1.75 * 25);
+        else
+            output += (1.25 * 25);
+        B--;
+    }
+    return output;
+  }
+
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) (g);
@@ -78,8 +92,67 @@ public class Graphing extends JPanel {
     Color gColor = new Color(102,153,255);
     g2.setColor(gColor);
 
-    // draw graph - not working
-    for (int x = -500; x < 500; x++)
-        g2.drawLine(x, solveY(x) , x+1, solveY(x+1));
+    // draes curves Ax^2
+    if (A != 0.0 && B == 0.0 && C == 0.0) {
+        for (int x = -250; x < 250; x++)
+            g2.drawLine(x+250, 
+                (-solveY(x) / (25 / (int) A)) / (int) A + 250, 
+                x+251, 
+                (-solveY(x+1) / (25 / (int) A)) / (int) A + 250);
+    }
+
+    // draws curves y = Ax^2 + Bx - doesn't work for B > 1
+    if (A != 0.0 && B != 0.0 && C == 0.0) {
+       for (int x = -250; x < 250; x++)
+            g2.draw(new Line2D.Double(x + (250 - (int) B * (25 / 2)), 
+                (-solveY(x) / (25 / (int) A)) / (int) A * (int) B + 250 + scaleBh(B), 
+                x + (250 - (int) B * (25 / 2)), 
+                (-solveY(x+1) / (25 / (int) A)) / (int) A * (int) B + 250 + scaleBh(B)));
+    }
+
+    // draws curves y = Ax^2 + C
+    if (A != 0.0 && B == 0.0 && C != 0.0) {
+        for (int x = -250; x < 250; x++)
+            g2.drawLine(x+250, 
+                (-solveY(x) / (25 / (int) A)) / (int) A + 250 - (25 * (int) C), 
+                x+251, 
+                (-solveY(x+1) / (25 / (int) A)) / (int) A + 250 - (25 * (int) C));
+    }
+
+    // draws curves y = Ax^2 + Bx + C - doesn't work for B > 1
+    if (A != 0.0 && B != 0.0 && C != 0.0) {
+        for (int x = -250; x < 250; x++)
+             g2.draw(new Line2D.Double(x + (250 - (int) B * (25 / 2)), 
+                (-solveY(x) / (25 / (int) A)) / (int) A * (int) B + 250 + scaleBh(B) - (25 * (int) C), 
+                x + (250 - (int) B * (25 / 2)), 
+                (-solveY(x+1) / (25 / (int) A)) / (int) A * (int) B + 250 + scaleBh(B) -  (25 * (int) C)));
+    }
+
+    // draws lines y = Bx
+    if (A == 0.0 && B != 0.0 && C == 0.0) {
+        for (int x = -250; x < 250; x++)
+            g2.drawLine(x+250, 
+                -solveY(x) + 250, 
+                x+251, 
+                -solveY(x+1) + 250);
+    }
+
+    // draws lines y = Bx + C
+    if (A == 0.0 && B != 0.0 && C != 0.0) {
+        for (int x = -250; x < 250; x++)
+            g2.drawLine(x+250, 
+                -solveY(x) + 250 - (25 * (int) B), 
+                x+251, 
+                -solveY(x+1) + 250 - (25 * (int) B));
+    }
+
+    // draws lines y = C
+    if (A == 0.0 && B == 0.0 && C != 0) {
+        for (int x = -250; x < 250; x++)
+            g2.drawLine(x+250, 
+                -solveY(x) + 250 - (25 * (int) C), 
+                x+251, 
+                -solveY(x+1) + 250 - (25 * (int) C));
+    }
   }
 }
