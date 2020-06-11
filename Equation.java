@@ -93,11 +93,11 @@ public class Equation extends JFrame implements ActionListener{
                 output += (rt.toString() + ", ");
             out.setText("{" + output.substring(0, output.length()-2) + "}");
             eqn.setText(f + " = " + g);
-            zero.setText(s + " = 0");
+            zero.setText(s + " = 0.0");
 
         }
         catch(IllegalArgumentException a){
-            out.setText("Invalid Input " + a);
+            out.setText("Invalid Input ");
         }
 
     }

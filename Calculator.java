@@ -46,8 +46,16 @@ public class Calculator implements WindowListener{
         options.get(2).addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 f.setVisible(false);
-                JFrame gr = new Main();
+                JFrame gr = new GraphingCalc();
                 gr.addWindowListener(w);
+            }
+        });
+        options.add(new JButton("Matrix Calculator"));
+        options.get(3).addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                f.setVisible(false);
+                JFrame m = new MatrixCalc();
+                m.addWindowListener(w);
             }
         });
 

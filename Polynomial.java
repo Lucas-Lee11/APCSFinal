@@ -94,7 +94,9 @@ public class Polynomial{
         Complex ga = Complex.add(ga1, ga2);
 
         if(be.equals(new Complex(0))){
-            Complex[] roots = new Complex[4];
+            Complex[] roots = new Complex[]{
+                new Complex(0), new Complex(0), new Complex(0), new Complex(0)
+            };
             for(int i = 0; i <= 3; i ++){
                 int s = (int) Math.pow(-1, i);
                 int t = (i/2 * 2) -1;
@@ -158,7 +160,9 @@ public class Polynomial{
 
         Complex W = Complex.sqrt(Complex.add(al, Complex.mult(new Complex(2), y)));
 
-        Complex[] roots = new Complex[4];
+        Complex[] roots = new Complex[]{
+            new Complex(0), new Complex(0), new Complex(0), new Complex(0)
+        };
         for(int i = 0; i <= 3; i++){
             int s = (int) Math.pow(-1, i);
             int t = (i/2 * 2) -1;
@@ -237,7 +241,9 @@ public class Polynomial{
             Complex.sub(Complex.sqrt(new Complex(-3)), new Complex(1)),
             new Complex(2)
         );
-        Complex[] roots = new Complex[3];
+        Complex[] roots = new Complex[]{
+            new Complex(0), new Complex(0), new Complex(0)
+        };
         for(int i = 0; i <= 2; i++){
             Complex zeta = Complex.pow(z, new Complex (i));
             ca = Complex.mult(ca, zeta);
@@ -270,7 +276,9 @@ public class Polynomial{
             )
         );
 
-        Complex[] roots = new Complex[2];
+        Complex[] roots = new Complex[]{
+            new Complex(0), new Complex(0)
+        };
         B = Complex.mult(new Complex(-1), B);
 
         for(int i = 0; i <= 1; i++){
@@ -299,9 +307,12 @@ public class Polynomial{
         for(int i = 0 ; i < 5; i ++){
             if(!terms[i].equals(new Complex(0))) {
                 out += ("(" + terms[i] +  ")");
-                if(i != 4) out+= ("x^" + (4-i) + " + ");
+                if(i != 4) out+= ("x^" + (4-i));
+                out += " + ";
             }
         }
+        if (out.equals("")) return "0.0";
+        out = out.substring(0,out.length() - 3);
 
         return out;
     }
@@ -317,11 +328,11 @@ public class Polynomial{
 
     public static void main(String[] args) {
         Polynomial f = new Polynomial(new Complex[]{
-            new Complex(3.2,-3),
-            new Complex(0,-0.4),
-            new Complex(3),
-            new Complex(-7,5),
-            new Complex(2)
+            new Complex(1,2),
+            new Complex(0),
+            new Complex(0),
+            new Complex(0),
+            new Complex(0)
         });
 
         Complex[] rts = f.getRoots();

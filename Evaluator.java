@@ -57,7 +57,7 @@ public class Evaluator extends JFrame implements ActionListener{
             out.setText(s.getValue().toString());
         }
         catch(IllegalArgumentException a){
-            out.setText("Invalid expression " + a);
+            out.setText("Invalid expression");
         }
     }
 

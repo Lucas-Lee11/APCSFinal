@@ -42,6 +42,7 @@ public class Complex {
     }
 
 	public String toString() {
+		if(this.equals(new Complex(0))) return "0.0";
 		double r = (double) Math.round(real *100000)/100000;
 		double i = (double) Math.round(imaginary *100000)/100000;
 
@@ -78,6 +79,8 @@ public class Complex {
     }
 
     public static Complex div(Complex var1, Complex var2){
+		if(var2.equals(new Complex(0))) throw new IllegalArgumentException();
+		if(var2.equals(new Complex(0))) return new Complex(0);
          Complex numerator = mult(var1, var2.conjugate());
          double denominator = Math.pow(var2.real, 2) + Math.pow(var2.imaginary, 2);
          Complex output = new Complex(numerator.real/denominator, numerator.imaginary/denominator);
