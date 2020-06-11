@@ -6,7 +6,7 @@ import java.util.*;
 public class Equation extends JFrame implements ActionListener{
 
     private JButton solve, back;
-    private JLabel intro, out, ans, LHS, RHS, eqn, zero;
+    private JLabel intro, out, ans, LHS, RHS, eqn, zero, der;
     private HashMap<JLabel, JTextField> side1, side2;
     private Solver s;
 
@@ -19,10 +19,11 @@ public class Equation extends JFrame implements ActionListener{
         intro = new JLabel("Enter terms for each side");
         LHS = new JLabel("Left side");
         RHS = new JLabel("Right side");
-        ans = new JLabel("Intersection:");
+        ans = new JLabel("Solution set:");
         out = new JLabel("");
         eqn = new JLabel("");
         zero = new JLabel("");
+        der = new JLabel("");
         side1 = new LinkedHashMap<JLabel, JTextField>();
         side2 = new LinkedHashMap<JLabel, JTextField>();
         for(int i = 4; i >= 0; i--){
@@ -39,6 +40,7 @@ public class Equation extends JFrame implements ActionListener{
         zero.setBounds(10, 420, 1000, 30);
         ans.setBounds(10, 500, 100, 30);
         out.setBounds(10, 520, 1000, 30);
+        der.setBounds(10, 540, 1000, 30);
 
         int track = 120;
         for (Map.Entry<JLabel,JTextField> row : side1.entrySet()){
@@ -60,7 +62,7 @@ public class Equation extends JFrame implements ActionListener{
             }
         });
 
-        add(solve); add(back); add(intro); add(LHS); add(RHS); add(ans); add(out); add(zero); add(eqn);
+        add(solve); add(back); add(intro); add(LHS); add(RHS); add(ans); add(out); add(zero); add(eqn); add(der);
         for (Map.Entry<JLabel,JTextField> row : side1.entrySet()) {add(row.getKey()); add(row.getValue());}
         for (Map.Entry<JLabel,JTextField> row : side2.entrySet()) {add(row.getKey()); add(row.getValue());}
 
@@ -94,6 +96,7 @@ public class Equation extends JFrame implements ActionListener{
             out.setText("{" + output.substring(0, output.length()-2) + "}");
             eqn.setText(f + " = " + g);
             zero.setText(s + " = 0.0");
+            der.setText("If f(x) = " + s + " ,then d f(x)/dx = " + s.getDerivative());
 
         }
         catch(IllegalArgumentException a){

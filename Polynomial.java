@@ -23,6 +23,17 @@ public class Polynomial{
         } else return quarticRoots();
     }
 
+    public Polynomial getDerivative(){
+        Complex[] nt = new Complex[5];
+        nt[0] = new Complex(0);
+
+        for(int i = 1; i < 5; i++){
+            nt[i] = Complex.mult(terms[i - 1], new Complex(5-i));
+        }
+
+        return new Polynomial(nt);
+    }
+
     private Complex[] quarticRoots(){
         Complex A = terms[0]; Complex B = terms[1]; Complex C = terms[2]; Complex D = terms[3]; Complex E = terms[4];
 
@@ -328,15 +339,16 @@ public class Polynomial{
 
     public static void main(String[] args) {
         Polynomial f = new Polynomial(new Complex[]{
-            new Complex(1,2),
+            new Complex(0),
             new Complex(0),
             new Complex(0),
             new Complex(0),
             new Complex(0)
         });
 
-        Complex[] rts = f.getRoots();
+        //Complex[] rts = f.getRoots();
         System.out.println(f);
-        for(Complex rt: rts) System.out.println(rt);
+        //for(Complex rt: rts) System.out.println(rt);
+        System.out.println(f.getDerivative());
     }
 }

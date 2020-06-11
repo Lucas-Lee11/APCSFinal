@@ -23,13 +23,13 @@ Some examples to run
 
 # Polynomial Equations
 
-This will find the intersection in a Polynomial equation with complex coefficients
+This will find the intersection in a Polynomial equation with complex coefficients as well as the derivative of the resulting function
 
 Each term uses the evaluator similar to the one already used
 
 # Graphing
 
-This will graph a quadratic using smaller real numbers
+This will graph a line or ax^2 + bx form quadratic using smaller real numbers on a 20x20 grid
 
 # Matrix Calculator
 
