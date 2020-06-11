@@ -117,100 +117,96 @@ public class MatrixCalc extends JFrame implements ActionListener
 				ans.setText("Error: " + a);
 			}
 		}
-		else
-			if (evt.getActionCommand().equals("sub"))
+		else if (evt.getActionCommand().equals("sub"))
+		{
+			try
 			{
-				try
-				{
-					ans.setText(Matrix.subtract(Read(matA), Read(matB)).toString());
-				}
-				catch(IllegalArgumentException a)
-				{
-					ans.setText("Error: " + a);
-				}
+				ans.setText(Matrix.subtract(Read(matA), Read(matB)).toString());
 			}
-			else
-				if (evt.getActionCommand().equals("mult"))
-				{
-					try
-					{
-						ans.setText(Matrix.matmult(Read(matA), Read(matB)).toString());
-					}
-					catch(IllegalArgumentException a)
-					{
-						ans.setText("Error: " + a);
-					}
-				}
-				else
-					if (evt.getActionCommand().equals("scal"))
-					{
-						try
-						{
-							ans.setText(Matrix.scalmult(Read(matA), Scal(scalC)).toString());
-						}
-						catch(IllegalArgumentException a)
-						{
-							ans.setText("Error: " + a);
-						}
-					}
-					else
-						if (evt.getActionCommand().equals("tran"))
-						{
-							try
-							{
-								ans.setText(Read(matA).transpose().toString());
-							}
-							catch(IllegalArgumentException a)
-							{
-								ans.setText("Error: " + a);
-							}
-						}
-						else
-							if (evt.getActionCommand().equals("inv"))
-							{
-								try
-								{
-									ans.setText(Read(matA).inverse().toString());
-								}
-								catch(IllegalArgumentException a)
-								{
-									ans.setText("Error: " + a);
-								}
-							}
-							else
-								if (evt.getActionCommand().equals("det"))
-								{
-									try
-									{
-										ans.setText(Read(matA).determinant().toString());
-									}
-									catch(IllegalArgumentException a)
-									{
-										ans.setText("Error: " + a);
-									}
-								}
-								else
-									if (evt.getActionCommand().equals("solv"))
-									{
-										try
-										{
-											ans.setText(Matrix.cramerSolve(Read(matA), Read(matB)).toString());
-										}
-										catch(IllegalArgumentException a)
-										{
-											ans.setText("Error: " + a);
-										}
-									}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("mult"))
+		{
+			try
+			{
+				ans.setText(Matrix.matmult(Read(matA), Read(matB)).toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("scal"))
+		{
+			try
+			{
+				ans.setText(Matrix.scalmult(Read(matA), Scal(scalC)).toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("tran"))
+		{
+			try
+			{
+				ans.setText(Read(matA).transpose().toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("inv"))
+		{
+			try
+			{
+				ans.setText(Read(matA).inverse().toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("det"))
+		{
+			try
+			{
+				ans.setText(Read(matA).determinant().toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
+		else if (evt.getActionCommand().equals("solv"))
+		{
+			try
+			{
+				ans.setText(Matrix.cramerSolve(Read(matA), Read(matB)).toString());
+			}
+			catch(IllegalArgumentException a)
+			{
+				ans.setText("Error: " + a);
+			}
+		}
 	}
 
 	public Matrix Read(JTextArea ta)
 	{
 		String text = ta.getText();
+		if(text == null || text.equals(" ")) throw new IllegalArgumentException();
 		StringTokenizer st = new StringTokenizer(text, "\n");
 		StringTokenizer ts = new StringTokenizer(text, "\n");
 		int row = st.countTokens();
+		if(row < 1) throw new IllegalArgumentException();
 		StringTokenizer st2 = new StringTokenizer(ts.nextToken(), ",");
 		int col = st2.countTokens();
+		if(col < 1) throw new IllegalArgumentException();
 
 		Matrix mat = new Matrix(row, col);
 		Complex comp;
@@ -238,6 +234,7 @@ public class MatrixCalc extends JFrame implements ActionListener
 	public Complex Scal(JTextArea ta)
 	{
 		String text = ta.getText();
+		if(ta == null || ta.equals(" ")) throw new IllegalArgumentException();
 		Complex comp = new Solver(text).getValue();
 		return comp;
 	}

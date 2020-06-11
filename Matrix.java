@@ -315,7 +315,7 @@ public class Matrix
 			for (int j = 1; j <= n; j++)
 				a.assignElement(i, j, A.getElement(i, j));
 
-		if (b.getnumCol() != 1) throw new IllegalArgumentException("Matrix b is not a vector");
+		if (b.getnumCol() != 1) throw new IllegalArgumentException("Matrix b is not a column vector");
 		if (det.equals(zero)) throw new IllegalArgumentException("Matrix A is singular");
 
 		for (int j = 1; j <= n; j++)
