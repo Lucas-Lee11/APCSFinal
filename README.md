@@ -21,17 +21,17 @@ Some examples to run
 + ((4 - 2^3 + 1) * -sqrt(-3\*3-4\*4+3i)) ^(2+3i) + cos(torad(30))^2
 + e^(i \* pi)
 
-#Polynomial Equations
+# Polynomial Equations
 
 This will find the intersection in a Polynomial equation with complex coefficients
 
 Each term uses the evaluator similar to the one already used
 
-#Graphing
+# Graphing
 
 This will graph a quadratic using smaller real numbers
 
-#Matrix Calculator
+# Matrix Calculator
 
 This will take in matrices with rows delimited by newlines and columns by commas
 
