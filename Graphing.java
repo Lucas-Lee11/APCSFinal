@@ -36,33 +36,6 @@ public class Graphing extends JPanel {
     return output;
   }
 
-  // scaling height of graph for Ax^2 + Bx + C and Ax^2 + Bx graphs 
-  public double scaleBh (double B) {
-    double output = 0.0;
-    while (B > 0){
-        if (B == 1)
-            output += (0.25 * 25);
-        else if (B % 2 == 0)
-            output += (1.75 * 25);
-        else
-            output += (1.25 * 25);
-        B--;
-    }
-    return output;
-  }
-
-  // scaling width of graph for Ax^2 + Bx + C and Ax^2 + Bx graphs 
-  public double scaleBw (double B) {
-    double output = B;
-    if (Math.abs(B) == 3.0)
-        output = 1.5;
-    while (Math.abs(B) > 3) {
-        output += -0.25;
-        B--;
-    }
-    return output;
-  }
-
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) (g);
@@ -115,15 +88,6 @@ public class Graphing extends JPanel {
                 (-solveY(x+1) / (25 / (int) A)) / (int) A + 250);
     }
 
-    // draws curves y = Ax^2 + Bx given B > 0, slightly inaccurate if B > 5
-    if (A != 0.0 && B != 0.0 && C == 0.0) {
-       for (int x = -250; x < 250; x++)
-            g2.draw(new Line2D.Double(x + (250 - (int) B * (25 / 2)), 
-                (-solveY(x) / (25 / (int) A)) / (int) A * scaleBw(B) + 250 + scaleBh(B), 
-                x + (250 - (int) B * (25 / 2)), 
-                (-solveY(x+1) / (25 / (int) A)) / (int) A * scaleBw(B) + 250 + scaleBh(B)));
-    }
-
     // draws curves y = Ax^2 + C
     if (A != 0.0 && B == 0.0 && C != 0.0) {
         for (int x = -250; x < 250; x++)
@@ -131,15 +95,6 @@ public class Graphing extends JPanel {
                 (-solveY(x) / (25 / (int) A)) / (int) A + 250 - (25 * (int) C), 
                 x+251, 
                 (-solveY(x+1) / (25 / (int) A)) / (int) A + 250 - (25 * (int) C));
-    }
-
-    // draws curves y = Ax^2 + Bx + C, only works for B = 1
-    if (A != 0.0 && B != 0.0 && C != 0.0) {
-        for (int x = -250; x < 250; x++)
-             g2.draw(new Line2D.Double(x + (250 - (int) B * (25 / 2)), 
-                (-solveY(x) / (25 / (int) A)) / (int) A * scaleBw(B) + 250 + scaleBh(B) - (25 * (int) C), 
-                x + (250 - (int) B * (25 / 2)), 
-                (-solveY(x+1) / (25 / (int) A)) / (int) A * scaleBw(B) + 250 + scaleBh(B) - (25 * (int) C)));
     }
 
     // draws lines y = Bx
