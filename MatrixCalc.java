@@ -79,14 +79,14 @@ public class MatrixCalc extends JFrame implements ActionListener
 		solv.setActionCommand("solv");
 
 		JPanel mainpanel = new JPanel();
-		mainpanel.setLayout(new BoxLayout(mainpanel, BoxLayout.Y_AXIS));	
+		mainpanel.setLayout(new BoxLayout(mainpanel, BoxLayout.Y_AXIS));
 
 		mainpanel.add(panelMat);
 		mainpanel.add(panelBut);
 
 		add(mainpanel, BorderLayout.CENTER);
 		setVisible(true);
-       		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+       		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public JPanel TextPane(String str, JTextArea ta)
@@ -107,20 +107,20 @@ public class MatrixCalc extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent evt)
 	{
 		if (evt.getActionCommand().equals("add"))
-		{	
-			try 
+		{
+			try
 			{
 				ans.setText(Matrix.add(Read(matA), Read(matB)).toString());
 			}
 			catch(IllegalArgumentException a)
 			{
 				ans.setText("Error: " + a);
-			}		
+			}
 		}
 		else
 			if (evt.getActionCommand().equals("sub"))
 			{
-				try 
+				try
 				{
 					ans.setText(Matrix.subtract(Read(matA), Read(matB)).toString());
 				}
@@ -177,7 +177,7 @@ public class MatrixCalc extends JFrame implements ActionListener
 									ans.setText("Error: " + a);
 								}
 							}
-							else 
+							else
 								if (evt.getActionCommand().equals("det"))
 								{
 									try
@@ -209,8 +209,8 @@ public class MatrixCalc extends JFrame implements ActionListener
 		StringTokenizer st = new StringTokenizer(text, "\n");
 		StringTokenizer ts = new StringTokenizer(text, "\n");
 		int row = st.countTokens();
-		StringTokenizer st2 = new StringTokenizer(ts.nextToken(), "+i");
-		int col = st2.countTokens() / 2;
+		StringTokenizer st2 = new StringTokenizer(ts.nextToken(), ",");
+		int col = st2.countTokens();
 
 		Matrix mat = new Matrix(row, col);
 		Complex comp;
@@ -221,19 +221,16 @@ public class MatrixCalc extends JFrame implements ActionListener
 
 		while (st.hasMoreTokens())
 		{
-			st2 = new StringTokenizer(st.nextToken(), "+i ");
-			while (st2.hasMoreElements())
+			st2 = new StringTokenizer(st.nextToken(), ",");
+			while (st2.hasMoreTokens())
 			{
-				real = Double.parseDouble(st2.nextToken());
-				imag = Double.parseDouble(st2.nextToken());
-				comp = new Complex(real, imag);
-
+				comp = new Solver(st2.nextToken()).getValue();
 				mat.assignElement(row, col, comp);
 				col++;
 			}
 			row++;
 			col = 1;
-		}	
+		}
 
 		return mat;
 	}
@@ -241,25 +238,7 @@ public class MatrixCalc extends JFrame implements ActionListener
 	public Complex Scal(JTextArea ta)
 	{
 		String text = ta.getText();
-		StringTokenizer st = new StringTokenizer(text, "+i");
-		double real = 0.0;
-		double imag = 0.0;
-		Complex comp;
-
-		if (st.countTokens() == 0)
-			comp = new Complex(0, 0);
-		else
-			if (st.countTokens() == 1)
-			{
-				real = Double.parseDouble(st.nextToken());
-				comp = new Complex(real, imag);
-			}
-			else
-			{
-				real = Double.parseDouble(st.nextToken());
-				imag = Double.parseDouble(st.nextToken());
-				comp = new Complex(real, imag);
-			}
+		Complex comp = new Solver(text).getValue();
 		return comp;
 	}
 
@@ -268,7 +247,3 @@ public class MatrixCalc extends JFrame implements ActionListener
 		new MatrixCalc();
 	}
 }
-		
-		
-
-		

@@ -139,11 +139,7 @@ public class Matrix
 
 			return c;
 		}
-		else
-		{
-			System.out.println ("Error: dimensions of the matrices don't match.");
-			return null;
-		}
+		else throw new IllegalArgumentException();
 	}
 
 	//Returns the product of two matrices.
@@ -174,11 +170,7 @@ public class Matrix
 
 			return c;
 		}
-		else
-		{
-			System.out.println("Error: factors are of wrong dimension.");
-			return null;
-		}
+		else throw new IllegalArgumentException();
 	}
 
 	//Computes the product of a matrix and a scalar.
@@ -323,17 +315,8 @@ public class Matrix
 			for (int j = 1; j <= n; j++)
 				a.assignElement(i, j, A.getElement(i, j));
 
-		if (b.getnumCol() > 1)
-		{
-			System.out.println("Matrix b is not a vector");
-			return null;
-		}
-
-		if (det.equals(zero))
-		{
-			System.out.println("Matrix A is singular");
-			return null;
-		}
+		if (b.getnumCol() != 1) throw new IllegalArgumentException("Matrix b is not a vector");
+		if (det.equals(zero)) throw new IllegalArgumentException("Matrix A is singular");
 
 		for (int j = 1; j <= n; j++)
 		{

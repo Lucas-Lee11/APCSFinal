@@ -9,6 +9,7 @@ public class Solver{
     public Solver(String equation){
         if(equation == null || equation.equals("")) throw new IllegalArgumentException();
         toSolve = equation;
+        while(toSolve.charAt(0) == ' ') toSolve = toSolve.substring(1, toSolve.length());
         curPos = 0;
         ch = toSolve.charAt(curPos);
         value = addTogether();
