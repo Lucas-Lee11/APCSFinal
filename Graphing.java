@@ -36,6 +36,7 @@ public class Graphing extends JPanel {
     return output;
   }
 
+  // scaling height of graph for Ax^2 + Bx + C and Ax^2 + Bx graphs 
   public double scaleBh (double B) {
     double output = 0.0;
     while (B > 0){
@@ -50,6 +51,7 @@ public class Graphing extends JPanel {
     return output;
   }
 
+  // scaling width of graph for Ax^2 + Bx + C and Ax^2 + Bx graphs 
   public double scaleBw (double B) {
     double output = B;
     if (Math.abs(B) == 3.0)
